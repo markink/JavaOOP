@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyTree {
+public class FamilyTree implements Serializable{
     private List<Human> humans;
 
 
@@ -9,7 +10,7 @@ public class FamilyTree {
         this.humans = new ArrayList<>();
     }
 
-    public FamilyTree(ArrayList<Human> humans) {
+    public FamilyTree(List <Human> humans) {
         this.humans = humans;
     }
 
@@ -25,20 +26,21 @@ public class FamilyTree {
         System.out.println(humans.get(value));
     }
 
-    public void printParents(int value){
+    public Serializable printParents(int value){
         System.out.printf("Родители %s являются %s и %s", humans.get(value).getName(), humans.get(value).getFather().getName(), humans.get(value).getMother().getName());
 
+        return null;
     }
 
-    public void addHuman(Human human) {
+    public Object addHuman(Human human) {
         if (humans != null) {
             humans.add(human);
         }
+        return human;
     }
 
     public void addParents (int child, int parent1, int parent2){
-        List <String> list1 = humans.get(parent1).getChildren();
-        List <String> list2 = humans.get(parent2).getChildren();
+
         if (humans.get(parent1).getGender().equals(humans.get(parent2).getGender())){
             System.out.println("Error");
         } else {
@@ -49,14 +51,11 @@ public class FamilyTree {
                 System.out.println("Детям не может быть меньше лет, чем родителям");
             }
         }
-
-
-
     }
 
     public void addChild (int parent, int child) {
-        List <String> list = humans.get(parent).getChildren();
-        list.add(String.valueOf(humans.get(child)));
+        List <Human> list = humans.get(parent).getChildren();
+        list.add(humans.get(child));
         humans.get(parent).setChildren(list);
     }
 }

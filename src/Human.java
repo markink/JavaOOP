@@ -1,13 +1,14 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human {
+public class Human implements Serializable {
     private String name;
     private int age;
     private Gender gender;
     private Human father;
     private Human mother;
-    private List<String> children;
+    private List<Human> children;
 
 
     public Human(String name, int age, Gender gender) {
@@ -20,11 +21,12 @@ public class Human {
 
     @Override
     public String toString() {
-        return "Имя " + name +
-                ", возраст " + age +
-                ", пол " + gender +
-                ", дети " + children +
-                '}';
+            return "Имя " + name +
+                    ", возраст " + age +
+                    ", пол " + gender +
+                    ", дети " + children +
+                    '}';
+
     }
 
 
@@ -55,11 +57,11 @@ public class Human {
         this.mother = mother;
     }
 
-    public List<String> getChildren() {
+    public List<Human> getChildren() {
         return children;
     }
 
-    public void setChildren(List<String> children) {
+    public void setChildren(List<Human> children) {
         this.children = children;
     }
 

@@ -4,7 +4,11 @@
 //модель человека и дерева
 //Под “проведением исследования” можно понимать например получение всех детей выбранного человека.
 
-import java.util.List;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Main {
 
@@ -31,14 +35,28 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+
+//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("person.out"));
+
+
         FamilyTree familyTree = new FamilyTree();
         fillTree(familyTree);
         familyTree.printHuman();
         familyTree.addParents(8, 1, 2);
         familyTree.printHuman();
+//        objectOutputStream.writeObject(familyTree.addHuman(new Human("Ростислав", 23, Gender.Male)));
+//        objectOutputStream.close();
+//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("person.out"));
+//        Human human = (Human) objectInputStream.readObject();
         familyTree.printHuman(1);
         familyTree.printParents(8);
+//        objectInputStream.close();
+        familyTree.printHuman();
+        FileHandler fileHandler = new FileHandler("human.out");
+        fileHandler.write(familyTree.addHuman(new Human("Ростислав", 23, Gender.Male)));
+        Human human = (Human) fileHandler.read();
+        familyTree.printHuman();
 
 
     }
