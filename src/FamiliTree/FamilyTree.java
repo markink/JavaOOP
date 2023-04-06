@@ -1,3 +1,9 @@
+package FamiliTree;
+
+import FamiliTree.Comporators.ComporatorByAge;
+import FamiliTree.Comporators.ComporatorByGender;
+import FamiliTree.Comporators.ComporatorByName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,4 +64,22 @@ public class FamilyTree implements Serializable{
         list.add(humans.get(child));
         humans.get(parent).setChildren(list);
     }
+
+    public List<Human> getHumans(){
+        return humans;
+    }
+
+    public void sortByAge(){
+        humans.sort(new ComporatorByAge());
+    }
+
+    public void sortByName(){
+        humans.sort(new ComporatorByName());
+    }
+
+    public void sortByGender(){
+        humans.sort(new ComporatorByGender());
+    }
+
+
 }
