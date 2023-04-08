@@ -53,23 +53,23 @@ public class Main {
         FileHandler fileHandler = new FileHandler("human.out");
         fileHandler.write(familyTree.addHuman(new Human("Ростислав", 23, Gender.Male)));
         Human human = (Human) fileHandler.read();
+        familyTree.addHuman(human);
         familyTree.printHuman();
-        for (Human human1 : familyTree.getHumans()) {
+        for (Object human1 : familyTree.getHumans()) {
             System.out.println(human1);
         }
-        familyTree.sortByAge();
         System.out.println("Сортировка по возрасту");
-        for (Human human1 : familyTree.getHumans()) {
+        for (Object human1 : familyTree.getHumans()) {
             System.out.println(human1);
         }
         familyTree.sortByGender();
         System.out.println("Сортировка по половому признаку");
-        for (Human human1 : familyTree.getHumans()) {
+        for (Object human1 : familyTree.getHumans()) {
             System.out.println(human1);
         }
         familyTree.sortByName();
         System.out.println("Сортировка по имени");
-        for (Human human1 : familyTree.getHumans()) {
+        for (Object human1 : familyTree.getHumans()) {
             System.out.println(human1);
         }
 

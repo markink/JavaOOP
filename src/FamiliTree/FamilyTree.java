@@ -6,9 +6,10 @@ import FamiliTree.Comporators.ComporatorByName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable{
+public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
     private List<Human> humans;
 
 
@@ -79,6 +80,10 @@ public class FamilyTree implements Serializable{
 
     public void sortByGender(){
         humans.sort(new ComporatorByGender());
+    }
+
+    public Iterator<T> iterator(){
+        return new HumanIterator(humans);
     }
 
 
