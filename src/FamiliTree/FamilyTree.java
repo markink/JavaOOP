@@ -10,20 +10,20 @@ import java.util.Iterator;
 import java.util.List;
 
 public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
-    private List<Human> humans;
+    private List<T> humans;
 
 
     public FamilyTree() {
         this.humans = new ArrayList<>();
     }
 
-    public FamilyTree(List <Human> humans) {
+    public FamilyTree(List <T> humans) {
         this.humans = humans;
     }
 
     public void printHuman() {
         int index = 0;
-        for (Human human : humans) {
+        for (T human : humans) {
             System.out.println(index + " " + human);
             index++;
         }
@@ -39,7 +39,7 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
         return null;
     }
 
-    public Object addHuman(Human human) {
+    public Object addHuman(T human) {
         if (humans != null) {
             humans.add(human);
         }
@@ -66,7 +66,7 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
         humans.get(parent).setChildren(list);
     }
 
-    public List<Human> getHumans(){
+    public List<T> getHumans(){
         return humans;
     }
 
@@ -85,6 +85,8 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
     public Iterator<T> iterator(){
         return new HumanIterator(humans);
     }
+
+
 
 
 }

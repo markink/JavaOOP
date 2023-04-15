@@ -1,5 +1,7 @@
 package Save;
 
+import FamiliTree.Human;
+
 import java.io.*;
 
 public class FileHandler implements SaveAs {
@@ -18,7 +20,7 @@ public class FileHandler implements SaveAs {
     }
 
     @Override
-    public void write(Object human) throws IOException {
+    public void write(Human human) throws IOException {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path));
         objectOutputStream.writeObject(human);
         objectOutputStream.close();
