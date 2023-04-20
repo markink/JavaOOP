@@ -36,8 +36,16 @@ public class Service <T extends Human>{
         tree.addHuman((T) new Human(name, age, gender));
     }
 
-    public void printTree() {
-        tree.printHuman();
+    public void addParents(int child, int parent1, int parent2) {
+        tree.addParents(child, parent1, parent2);
+    }
+
+    public void addChild(int parent1, int parent2){
+        tree.addChild(parent1, parent2);
+    }
+
+    public StringBuilder FamilyTree() {
+        return tree.HumanList();
     }
 
     public void save(){

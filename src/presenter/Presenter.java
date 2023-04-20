@@ -18,6 +18,14 @@ public class Presenter {
         service.addHuman(name, gender, age);
     }
 
+    public void addParents(int child, int parent1, int parent2){
+        service.addParents(child, parent1, parent2);
+    }
+
+    public void addChild(int parent1, int parent2){
+        service.addChild(parent1, parent2);
+    }
+
     public void loadTree(){
         service.load();
     }
@@ -26,7 +34,19 @@ public class Presenter {
         service.save();
     }
 
-    public void getHumanList() {
-        service.printTree();
+    public StringBuilder getHumanList() {
+        return service.FamilyTree();
+    }
+
+    public void sortByName() {
+        service.sortByName();
+    }
+
+    public void sortByGender() {
+        service.sortByGender();
+    }
+
+    public void sortByAge() {
+        service.sortByAge();
     }
 }

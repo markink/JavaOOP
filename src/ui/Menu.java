@@ -12,10 +12,13 @@ public class Menu {
     public Menu(ConsoleUI console) {
         commands = new ArrayList<>();
         commands.add(new AddHuman(console));
-        commands.add(new Stop(console));
+        commands.add(new GetAllHuman(console));
+        commands.add(new Sort(console));
+        commands.add(new AddParents(console));
+        commands.add(new AddChild(console));
         commands.add(new saveTree(console));
         commands.add(new LoadTree(console));
-        commands.add(new GetAllHuman(console));
+        commands.add(new Stop(console));
     }
 
     public void execute(int choice) {

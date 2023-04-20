@@ -21,23 +21,17 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
         this.humans = humans;
     }
 
-    public void printHuman() {
-        int index = 0;
+    public StringBuilder HumanList() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int index = 1;
         for (T human : humans) {
-            System.out.println(index + " " + human);
+            stringBuilder.append(index + " " + human + "\n");
             index++;
         }
+        return stringBuilder;
     }
 
-    public void printHuman(int value) {
-        System.out.println(humans.get(value));
-    }
-
-    public Serializable printParents(int value){
-        System.out.printf("Родители %s являются %s и %s", humans.get(value).getName(), humans.get(value).getFather().getName(), humans.get(value).getMother().getName());
-
-        return null;
-    }
 
     public Object addHuman(T human) {
         if (humans != null) {
@@ -48,12 +42,12 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
 
     public void addParents (int child, int parent1, int parent2){
 
-        if (humans.get(parent1).getGender().equals(humans.get(parent2).getGender())){
+        if (humans.get(parent1-1).getGender().equals(humans.get(parent2-1).getGender())){
             System.out.println("Error");
         } else {
-            if (humans.get(parent1).getAge() >= humans.get(child).getAge() && humans.get(parent2).getAge() >= humans.get(child).getAge()){
-                humans.get(child).setMother(humans.get(parent1));
-                humans.get(child).setFather(humans.get(parent2));
+            if (humans.get(parent1-1).getAge() >= humans.get(child-1).getAge() && humans.get(parent2-1).getAge() >= humans.get(child-1).getAge()){
+                humans.get(child-1).setMother(humans.get(parent1-1));
+                humans.get(child-1).setFather(humans.get(parent2-1));
             }else {
                 System.out.println("Детям не может быть меньше лет, чем родителям");
             }
@@ -61,9 +55,9 @@ public class FamilyTree<T extends Human> implements Serializable, Iterable<T>{
     }
 
     public void addChild (int parent, int child) {
-        List <Human> list = humans.get(parent).getChildren();
-        list.add(humans.get(child));
-        humans.get(parent).setChildren(list);
+        List <Human> list = humans.get(parent-1).getChildren();
+        list.add(humans.get(child-1));
+        humans.get(parent-1).setChildren(list);
     }
 
     public List<T> getHumans(){

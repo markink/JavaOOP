@@ -47,7 +47,7 @@ public class ConsoleUI implements View{
         String name;
         int age;
         Gender gender = null;
-
+        System.out.println("Введите имя");
         name = scan();
         while (gender == null) {
             System.out.println("Введите пол 'm' - межской, 'f' - женский");
@@ -61,13 +61,33 @@ public class ConsoleUI implements View{
             }
 
         }
+        System.out.println("Введите возраст");
         age = Integer.parseInt(scan());
 
         presenter.addHuman(name, gender, age);
     }
 
+    public void addParents(){
+        System.out.println("Введите человека, которому необходимо добавить родителей");
+        int value1 = Integer.parseInt(scan());
+        System.out.println("Введите родителя один");
+        int value2 = Integer.parseInt(scan());
+        System.out.println("Введите родителя два");
+        int value3 = Integer.parseInt(scan());
+        presenter.addParents(value1, value2, value3);
+    }
+
+    public void addChild(){
+        System.out.println("Введите родителя один");
+        int value1 = Integer.parseInt(scan());
+        System.out.println("Введите родителя два");
+        int value2 = Integer.parseInt(scan());
+
+        presenter.addChild(value1, value2);
+    }
+
     public void getHumanList(){
-        presenter.getHumanList();
+        System.out.println(presenter.getHumanList());
     }
 
     public void saveTree() {
@@ -80,5 +100,26 @@ public class ConsoleUI implements View{
 
     public void stopConsole(){
         work = false;
+    }
+
+
+    public void sort(){
+        System.out.println("Для сортировки по имени введите 1\n" +
+                "По половому признаку 2\n" +
+                "По возрасту 3\n" +
+                "Если хотите выйти введите 0");
+        int value = Integer.parseInt(scan());
+        if (value == 1) {
+            presenter.sortByName();
+        } else if (value == 2) {
+            presenter.sortByGender();
+        } else if (value == 3) {
+            presenter.sortByAge();
+        } else if (value == 0) {
+            menu.printMenu();
+        } else {
+            System.out.println("Inccorect value");
+            sort();
+        }
     }
 }
